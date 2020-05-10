@@ -39,6 +39,16 @@ public class Planet{
 
 	}
 
+	public double calcForceExertedByX(Planet p){
+		double ForceX = this.calcForceExertedBy(p) * (p.xxPos - this.xxPos)/this.calcDistance(p);
+		return ForceX;
+	}
+
+	public double calcForceExertedByY(Planet p){
+		double ForceY = this.calcForceExertedBy(p) * (p.yyPos - this.yyPos)/this.calcDistance(p);
+		return ForceY;
+	}
+
 	public double calcNetForceExertedByX(Planet[] allPlanets){
 		double netForceX = 0;
 		for (Planet i:allPlanets){
