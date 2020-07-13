@@ -35,7 +35,7 @@ public class LinkedListDeque<T>
         return size == 0;
     }
     
-    public void addFirst(Thing item) {
+    public void addFirst(T item) {
         IntNode newNode = new IntNode(item, header, header.next);
         header.next.prev = newNode;
         header.next = newNode;
