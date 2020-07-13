@@ -1,20 +1,20 @@
 
-public class ArrayDeque<Item>
+public class ArrayDeque<T>
 {
-    private Item[] items;
+    private T[] items;
     private int size;
     private int first;
     private int last;
     
     public ArrayDeque() {
-        items = (Item[])new Object[8];
+        items = (T[])new Object[8];
         size = 0;
         first = 1;
         last = 2;
     }
     
     private void resize(int capacity) {
-        Item[] a = (Item[]) new Object[capacity];
+        T[] a = (T[]) new Object[capacity];
         if (last == first - 1) {          
             for (int i = 0; i <= last; i++) {
                 a[i] = items[i];
@@ -36,7 +36,7 @@ public class ArrayDeque<Item>
     }
     
     
-    public void addFirst(Item x) {
+    public void addFirst(T x) {
         if (size == items.length){
             resize(size + 1);
         }
@@ -51,7 +51,7 @@ public class ArrayDeque<Item>
              
     }
     
-    public void addLast(Item x) {
+    public void addLast(T x) {
         if (size == items.length) {
             resize(size + 1);
         }
@@ -65,10 +65,10 @@ public class ArrayDeque<Item>
         size ++;
     }
     
-    public Item removeFirst() {
-        Item toRemove = items[first];
+    public T removeFirst() {
+        T toRemove = items[first];
         if (items.length >= 16) {
-            Item[] a = (Item[]) new Object[items.length-1];
+            T[] a = (T[]) new Object[items.length-1];
             for (int i = 0; i < first; i++) {
                 a[i] = items[i];
             }
@@ -77,7 +77,7 @@ public class ArrayDeque<Item>
             }           
         }
         else {
-            Item[] a = (Item[]) new Object[items.length];
+            T[] a = (T[]) new Object[items.length];
             for (int i = 0; i < first; i++) {
                 a[i] = items[i];
             }
@@ -92,10 +92,10 @@ public class ArrayDeque<Item>
         return toRemove;             
     }
     
-    public Item removeLast() {
-        Item toRemove = items[last];
+    public T removeLast() {
+        T toRemove = items[last];
         if (items.length >= 16) {
-            Item[] a = (Item[]) new Object[items.length-1];
+            T[] a = (T[]) new Object[items.length-1];
             for (int i = 0; i < last; i++) {
                 a[i] = items[i];
             }
@@ -104,7 +104,7 @@ public class ArrayDeque<Item>
             }           
         }
         else {
-            Item[] a = (Item[]) new Object[items.length];
+            T[] a = (T[]) new Object[items.length];
             for (int i = 0; i < last; i++) {
                 a[i] = items[i];
             }
@@ -120,20 +120,26 @@ public class ArrayDeque<Item>
                      
     }
     
-    public Item getFirst() {
+    public T getFirst() {
         return items[first];
     }
     
-    public Item getLast() {
+    public T getLast() {
         return items[last];
     }
     
-    public Item get(int i) {
+    public T get(int i) {
         return items[i];
     }
     
     public int size() {
         return size;
+    }
+
+    public void printDeque(){
+        for (int i = first; i!=last; i++){
+            System.out.println(items[i] + " ");
+        }
     }
     
 
