@@ -47,6 +47,9 @@ public class LinkedListDeque<T>{
     }
     
     public T removeFirst() {
+        if (size == 0){
+            return null;
+        }
         T toRemove = header.next.item;
         header.next.next.prev = header;
         header.next = header.next.next;
@@ -57,6 +60,9 @@ public class LinkedListDeque<T>{
     }
     
     public T removeLast() {
+        if (size == 0){
+            return null;
+        }
         T toRemove = trailer.prev.item;
         trailer.prev.prev.next = trailer;
         trailer.prev = trailer.prev.prev;
@@ -95,5 +101,6 @@ public class LinkedListDeque<T>{
             toPrint = toPrint.next;
         }
     }
+
 
 }

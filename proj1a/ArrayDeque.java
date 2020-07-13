@@ -1,5 +1,5 @@
 
-public class ArrayDeque<T>{
+public class ArrayDeque<T> {
     private T[] items;
     private int size;
     private int first;
@@ -21,7 +21,7 @@ public class ArrayDeque<T>{
             for (int i = first; i <= items.length - 1; i++) {
                 a[i + 1] = items[i];
             }
-            first ++;
+            first++;
         }
         if (first == 0 && last == items.length - 1) {
             for (int i = 0; i <= last; i++) {
@@ -30,7 +30,7 @@ public class ArrayDeque<T>{
         }
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return size == 0;
     }
 
@@ -116,8 +116,8 @@ public class ArrayDeque<T>{
         return size;
     }
 
-    public void printDeque(){
-        for (int i = first; i != last; i++){
+    public void printDeque() {
+        for (int i = first; i != last; i++) {
             System.out.println(items[i] + " ");
         }
     }
