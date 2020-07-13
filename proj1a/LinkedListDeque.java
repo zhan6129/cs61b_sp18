@@ -39,22 +39,35 @@ public class LinkedListDeque<Thing>
         IntNode newNode = new IntNode(item, header, header.next);
         header.next.prev = newNode;
         header.next = newNode;
+        size += 1;
     }
     
     public void addLast(Thing item) {
         IntNode newNode = new IntNode(item, trailer.prev, trailer);
         trailer.prev.next = newNode;
         trailer.prev = newNode;
+        size += 1;
     }
     
-    public void removeFirst() {
+    public Thing removeFirst() {
+        Thing toRemove = header.next.item;
         header.next.next.prev = header;
-        header.next = header.next.next;       
+        header.next = header.next.next;
+        if (!isEmpty()){
+            size -= 1;
+        }
+        return toRemove;       
     }
     
-    public void removeLast() {
+    public Thing removeLast() {
+        Thing toRemove = trailer.prev;
         trailer.prev.prev.next = trailer;
         trailer.prev = trailer.prev.prev;
+        if (!isEmpty()){
+            size -= 1;
+        }
+        return toRemove;
+
     }
     
     public IntNode getFirst() {
