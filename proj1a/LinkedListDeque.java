@@ -3,7 +3,6 @@ public class LinkedListDeque<T>{
     private IntNode header;
     private IntNode trailer;
     private int size;
-    private IntNode current;
     
     private class IntNode{
         private IntNode prev;
@@ -23,7 +22,6 @@ public class LinkedListDeque<T>{
         header = new IntNode(null, null, null);
         trailer = new IntNode(null, header, null);
         header.next = trailer;
-        current = header;
     }
     
     public int size() {

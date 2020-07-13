@@ -33,58 +33,58 @@ public class ArrayDeque<T>{
     public boolean isEmpty(){
         return size == 0;
     }
+
+    private boolean isFull() {
+        return size == items.length;
+    }
+
+    private boolean isSparse() {
+        return items.length >= 16 && size < (items.length / 4);
+    }
+
+    private int plusOne(int index) {
+        return (index + 1) % items.length;
+    }
+
+    private int minusOne(int index) {
+        return (index - 1 + items.length) % items.length;
+    }
+
+    private void upSize() {
+        resize(size * 2);
+    }
+
+    private void downSize() {
+        resize(items.length / 2);
+    }
+
     
     
     public void addFirst(T x) {
-        if (size == items.length){
-            resize(size + 1);
+        if (isFull()) {
+            upSize();
         }
         items[first] = x;
-        if (first != 0) {
-            first--;
-        }
-        else {
-            first = items.length - 1;
-        }
-        size++;
-             
+        first = minusOne(first);
+        size++;           
     }
     
     public void addLast(T x) {
-        if (size == items.length) {
-            resize(size + 1);
+        if (isFull()) {
+            upSize();
         }
         items[last] = x;
-        if (last != items.length - 1) {
-            last++;
-        }
-        else {
-            last = 0;
-        }
+        last = plusOne(last);
         size++;
     }
     
     public T removeFirst() {
+        if (isSparse()) {
+            downSize();
+        }
         T toRemove = items[first];
-        if (items.length >= 16) {
-            T[] a = (T[]) new Object[items.length - 1];
-            for (int i = 0; i < first; i++) {
-                a[i] = items[i];
-            }
-            for (int i = first; i < items.length - 1; i++) {
-                a[i] = items[i + 1];
-            }           
-        }
-        else {
-            T[] a = (T[]) new Object[items.length];
-            for (int i = 0; i < first; i++) {
-                a[i] = items[i];
-            }
-            for (int i = first + 1; i < items.length; i++) {
-                a[i] = items[i];
-            }
-            first++;        
-        }
+        items[first] = null;
+        first = plusOne(first);
         if (!isEmpty()) {
             size -= 1;
         }
@@ -92,36 +92,24 @@ public class ArrayDeque<T>{
     }
     
     public T removeLast() {
+        if (isSparse()) {
+            downSize();
+        }
         T toRemove = items[last];
-        if (items.length >= 16) {
-            T[] a = (T[]) new Object[items.length - 1];
-            for (int i = 0; i < last; i++) {
-                a[i] = items[i];
-            }
-            for (int i = last; i < items.length - 1; i++) {
-                a[i] = items[i + 1];
-            }           
-        }
-        else {
-            T[] a = (T[]) new Object[items.length];
-            for (int i = 0; i < last; i++) {
-                a[i] = items[i];
-            }
-            for (int i = last+1; i < items.length; i++) {
-                a[i] = items[i];
-            }
-            last--;        
-        }
+        items[last] = null;
+        last = minusOne(last);
         if (!isEmpty()) {
             size -= 1;
         }
-        return toRemove;
-                     
+        return toRemove;                     
     }
     
     
-    public T get(int i) {
-        return items[i];
+    public T get(int index) {
+        if (index >= size) {
+            return null;
+        }
+        return items[(first + index) % items.length];
     }
     
     public int size() {
