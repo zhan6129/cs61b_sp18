@@ -1,6 +1,5 @@
 
-public class LinkedListDeque<T>
-{
+public class LinkedListDeque<T>{
     private IntNode header;
     private IntNode trailer;
     private int size;
@@ -21,8 +20,8 @@ public class LinkedListDeque<T>
     
     public LinkedListDeque() {
         size = 0;
-        header = new IntNode(null,null,null);
-        trailer = new IntNode(null,header,null);
+        header = new IntNode(null, null, null);
+        trailer = new IntNode(null, header, null);
         header.next = trailer;
         current = header;
     }
@@ -53,7 +52,7 @@ public class LinkedListDeque<T>
         T toRemove = header.next.item;
         header.next.next.prev = header;
         header.next = header.next.next;
-        if (!isEmpty()){
+        if (!isEmpty()) {
             size -= 1;
         }
         return toRemove;       
@@ -63,7 +62,7 @@ public class LinkedListDeque<T>
         T toRemove = trailer.prev.item;
         trailer.prev.prev.next = trailer;
         trailer.prev = trailer.prev.prev;
-        if (!isEmpty()){
+        if (!isEmpty()) {
             size -= 1;
         }
         return toRemove;
@@ -72,7 +71,7 @@ public class LinkedListDeque<T>
     
     public T get(int index) {
         IntNode toGet = header.next;
-        for (int i=0; i< index; i++){
+        for (int i=0; i < index; i++){
             toGet = toGet.next;
         }
         return toGet.item;
@@ -91,7 +90,7 @@ public class LinkedListDeque<T>
         return getRecursive(index, header.next);
     }
 
-    public void printDeque(){
+    public void printDeque() {
         IntNode toPrint = header.next;
         for (int i = 0; i < size; i++){
             System.out.print(toPrint.item + " ");
