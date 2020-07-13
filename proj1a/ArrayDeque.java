@@ -30,6 +30,10 @@ public class ArrayDeque<Item>
             }
         }
     }
+
+    public boolean isEmpty(){
+        return size == 0;
+    }
     
     
     public void addFirst(Item x) {
@@ -61,7 +65,8 @@ public class ArrayDeque<Item>
         size ++;
     }
     
-    public void removeFirst() {
+    public Item removeFirst() {
+        Item toRemove = items[first];
         if (items.length >= 16) {
             Item[] a = (Item[]) new Object[items.length-1];
             for (int i = 0; i < first; i++) {
@@ -81,10 +86,14 @@ public class ArrayDeque<Item>
             }
             first ++;        
         }
-                     
+        if (!isEmpty()) {
+            size -= 1;
+        }
+        return toRemove;             
     }
     
-    public void removeLast() {
+    public Item removeLast() {
+        Item toRemove = items[last];
         if (items.length >= 16) {
             Item[] a = (Item[]) new Object[items.length-1];
             for (int i = 0; i < last; i++) {
@@ -104,6 +113,10 @@ public class ArrayDeque<Item>
             }
             last --;        
         }
+        if (!isEmpty()) {
+            size -= 1;
+        }
+        return toRemove;
                      
     }
     

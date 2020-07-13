@@ -88,7 +88,7 @@ public class LinkedListDeque<Thing>
     }
 
     public Thing getRecursive(int index) {
-        return getRecursive(index, sentinel.next);
+        return getRecursive(index, header.next);
     }
 
 }
