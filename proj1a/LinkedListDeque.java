@@ -1,10 +1,10 @@
 
-public class LinkedListDeque<T>{
+public class LinkedListDeque<T> {
     private IntNode header;
     private IntNode trailer;
     private int size;
     
-    private class IntNode{
+    private class IntNode {
         private IntNode prev;
         private T item;
         private IntNode next;
@@ -47,7 +47,7 @@ public class LinkedListDeque<T>{
     }
     
     public T removeFirst() {
-        if (size == 0){
+        if (size == 0) {
             return null;
         }
         T toRemove = header.next.item;
@@ -60,7 +60,7 @@ public class LinkedListDeque<T>{
     }
     
     public T removeLast() {
-        if (size == 0){
+        if (size == 0) {
             return null;
         }
         T toRemove = trailer.prev.item;
@@ -75,7 +75,7 @@ public class LinkedListDeque<T>{
     
     public T get(int index) {
         IntNode toGet = header.next;
-        for (int i=0; i < index; i++){
+        for (int i = 0; i < index; i++) {
             toGet = toGet.next;
         }
         return toGet.item;
@@ -96,7 +96,7 @@ public class LinkedListDeque<T>{
 
     public void printDeque() {
         IntNode toPrint = header.next;
-        for (int i = 0; i < size; i++){
+        for (int i = 0; i < size; i++) {
             System.out.print(toPrint.item + " ");
             toPrint = toPrint.next;
         }
