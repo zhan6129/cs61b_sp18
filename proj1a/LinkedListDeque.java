@@ -60,7 +60,7 @@ public class LinkedListDeque<Thing>
     }
     
     public Thing removeLast() {
-        Thing toRemove = trailer.prev;
+        Thing toRemove = trailer.prev.item;
         trailer.prev.prev.next = trailer;
         trailer.prev = trailer.prev.prev;
         if (!isEmpty()){
@@ -70,13 +70,14 @@ public class LinkedListDeque<Thing>
 
     }
     
-    public IntNode getFirst() {
-        return header.next;
+    public Thing get(int index) {
+        IntNode toGet = header.next;
+        for (int i=0; i< index; i++){
+            toGet = toGet.next;
+        }
+        return toGet.item;
     }
     
-    public IntNode getLast() {
-        return trailer.prev;
-    }
     
     public IntNode getRecursive(int index) {
         IntNode x = getRecursiveHelper(index);
