@@ -13,11 +13,14 @@ public class ArrayDeque<T> {
 
     private void resize(int capacity) {
         T[] newDeque = (T[]) new Object[capacity];
-        int oldIndex = nextFirst;
+        int oldIndex = plusOne(nextFirst);
         for (int newIndex = 0; newIndex < size; newIndex++) {
             newDeque[newIndex] = items[oldIndex];
             oldIndex = plusOne(oldIndex);
         }
+        items = newDeque;
+        nextFirst = capacity - 1;
+        nextLast = size;
     }
 
     public boolean isEmpty() {
@@ -96,7 +99,7 @@ public class ArrayDeque<T> {
         if (index >= size) {
             return null;
         }
-        return items[(nextFirst + index) % items.length];
+        return items[(nextFirst + 1 + index) % items.length];
     }
 
     public int size() {
