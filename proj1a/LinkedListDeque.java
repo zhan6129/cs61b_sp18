@@ -79,21 +79,16 @@ public class LinkedListDeque<Thing>
     }
     
     
-    public IntNode getRecursive(int index) {
-        IntNode x = getRecursiveHelper(index);
-        current = header;
-        return x;
-    }
-    
-    public IntNode getRecursiveHelper(int index) {
+    private Thing getRecursive(int index, IntNode curr) {
+
         if (index == 0) {
-            return current.next;
+            return curr.item;
         }
-        else if(current != null){
-            current = current.next;
-            return getRecursive(index - 1);
-        }
-        else return null;
+        return getRecursive(index - 1, curr.next);
+    }
+
+    public Thing getRecursive(int index) {
+        return getRecursive(index, sentinel.next);
     }
 
 }
