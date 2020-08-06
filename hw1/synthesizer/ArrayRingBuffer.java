@@ -28,15 +28,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
                
     }
     
-    @Override
-    public int capacity() {
-        return rb.length;
-    }
     
-    @Override
-    public int fillCount() {
-        return fillCount;
-    }
 
     /**
      * Adds x to the end of the ring buffer. If there is no room, then
